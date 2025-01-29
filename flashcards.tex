@@ -1,0 +1,83 @@
+\documentclass[a5paper]{article}
+\usepackage[top=0.75in, bottom=0.5in, left=0.5in, right=0.5in, headheight=14pt]{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{forloop}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{longtable}
+\usepackage{colortbl}
+
+% Set up header with card numbering
+\pagestyle{fancy}
+\fancyhf{} % Clear default header/footer
+\renewcommand{\headrulewidth}{0pt} % Remove header line
+
+\newcounter{flashcard}
+\newcommand{\numflashcards}{101}
+\newcounter{cardnumber} % Temporary counter for correct numbering
+
+% Increase row height
+\renewcommand{\arraystretch}{1.5}
+
+\begin{document}
+
+% Index Page
+\section*{\centering Flash Card Index}
+
+\noindent
+\begin{longtable}{|p{0.9\textwidth}|}
+    \hline
+    \multicolumn{1}{|c|}{\textbf{}} \\
+    \hline
+    \endfirsthead
+
+    \hline
+    \multicolumn{1}{|c|}{\textbf{}} \\
+    \hline
+    \endhead
+
+    % Generate index rows
+    \forloop{flashcard}{1}{\value{flashcard} < \numflashcards}{%
+        \ifodd\value{flashcard}\cellcolor{white}\else\cellcolor{gray!15}\fi
+        \hyperlink{front\arabic{flashcard}}{\arabic{flashcard}} \\
+        \hline
+    }
+\end{longtable}
+
+\newpage
+
+% Generate all front sides first
+\forloop{flashcard}{1}{\value{flashcard} < \numflashcards}{%
+    \setcounter{cardnumber}{\value{flashcard}} % Store the correct card number
+    \fancyhead[C]{\large \textbf{Card \arabic{cardnumber}}} % Use stored number
+
+    \hypertarget{front\arabic{cardnumber}}{} % Correctly label each front card
+    \begin{center}
+        \begin{tikzpicture}
+            \node[anchor=south west, inner sep=0] (img) at (0,0) {\includegraphics[width=\textwidth]{front.pdf}};
+            \node[fill=blue!60, text=white, rounded corners=2mm, inner sep=4pt, font=\bfseries, anchor=south east]
+                at (img.south east) {\hyperlink{back\arabic{cardnumber}}{Flip →}};
+        \end{tikzpicture}
+    \end{center}
+    \newpage
+}
+
+% Generate all back sides after the front cards
+\forloop{flashcard}{1}{\value{flashcard} < \numflashcards}{%
+    \setcounter{cardnumber}{\value{flashcard}} % Store the correct card number
+    \fancyhead[C]{\large \textbf{Card \arabic{cardnumber}}} % Use stored number
+
+    \hypertarget{back\arabic{cardnumber}}{} % Correctly label each back card
+    \begin{center}
+        \begin{tikzpicture}
+            \node[anchor=south west, inner sep=0] (img) at (0,0) {\includegraphics[width=\textwidth]{back.pdf}};
+            \node[fill=red!60, text=white, rounded corners=2mm, inner sep=4pt, font=\bfseries, anchor=south east]
+                at (img.south east) {\hyperlink{front\arabic{cardnumber}}{← Flip}};
+        \end{tikzpicture}
+    \end{center}
+    \newpage
+}
+
+\end{document}
