@@ -91,4 +91,21 @@
     \newpage
 }
 
+\forloop{flashcard}{1}{\value{flashcard} < \numflashcards}{%
+    \setcounter{cardnumber}{\value{flashcard}}
+    \hypertarget{notes\arabic{cardnumber}}{} % Hyperlink target for each notes page
+    \fancyhead[C]{\large \textbf{Notes Page \arabic{cardnumber}}}
+
+    \begin{center}
+    \begin{tikzpicture}[remember picture, overlay]
+        \foreach \y in {0,1,...,100} { % Generate lines dynamically
+            \draw[gray!50] (current page.south west) ++ (0,\y cm) -- ++(\paperwidth,0);
+        }
+    \end{tikzpicture}
+    \end{center}
+
+    \newpage
+}
+
+
 \end{document}
