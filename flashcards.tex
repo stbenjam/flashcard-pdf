@@ -1,5 +1,5 @@
 \documentclass[a5paper]{article}
-\usepackage[top=0.75in, bottom=0.5in, left=0.5in, right=0.5in, headheight=16pt]{geometry}
+\usepackage[top=0.75in, bottom=0.5in, left=0.25in, right=0.25in, headheight=16pt]{geometry}
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{tikz}
@@ -15,7 +15,7 @@
 \renewcommand{\headrulewidth}{0pt} % Remove header line
 
 \newcounter{flashcard}
-\newcommand{\numflashcards}{11}
+\newcommand{\numflashcards}{251}
 \newcounter{cardnumber} % Temporary counter for correct numbering
 
 % Increase row height
@@ -27,15 +27,9 @@
 \section*{\centering Flash Card Index}
 
 \noindent
-\begin{longtable}{|p{0.7\textwidth}|p{0.1\textwidth}|p{0.1\textwidth}|}
-    \hline
-    \multicolumn{1}{|c|}{\textbf{Card}} & \multicolumn{1}{c|}{\textbf{Front}} & \multicolumn{1}{c|}{\textbf{Back}} \\
+\begin{longtable}{|p{0.5\textwidth}|p{0.1\textwidth}|p{0.1\textwidth}|p{0.1\textwidth}|}
     \hline
     \endfirsthead
-
-    \hline
-    \multicolumn{1}{|c|}{\textbf{Card}} & \multicolumn{1}{c|}{\textbf{Front}} & \multicolumn{1}{c|}{\textbf{Back}} \\
-    \hline
     \endhead
 
     % Generate index rows with dynamic labels
@@ -44,7 +38,8 @@
         \ifodd\value{flashcard}\cellcolor{white}\else\cellcolor{gray!15}\fi
         \hyperlink{front\arabic{flashcard}}{\arabic{flashcard}} &
         {\hyperlink{front\arabic{flashcard}}{\textbf{\color{white}\fcolorbox{black}{blue!60}{Front}}}} &
-        {\hyperlink{back\arabic{flashcard}}{\textbf{\color{white}\fcolorbox{black}{red!60}{Back}}}} \\
+        {\hyperlink{back\arabic{flashcard}}{\textbf{\color{white}\fcolorbox{black}{red!60}{Back}}}} &
+        {\hyperlink{notes\arabic{flashcard}}{\textbf{\color{white}\fcolorbox{black}{green!60}{Notes}}}} \\
         \hline
     }
 \end{longtable}
@@ -66,8 +61,8 @@
     \end{center}
     % Add "Index" button link at the bottom, pointing to the specific index entry
     \begin{center}
-        \hyperlink{index\arabic{cardnumber}}{\textbf{\color{white}\fcolorbox{black}{blue}{Index Page}}}
-        \hyperlink{notes\arabic{cardnumber}}{\textbf{\color{white}\fcolorbox{black}{blue}{Notes}}}
+        \hyperlink{index\arabic{cardnumber}}{\textbf{\color{white}\fcolorbox{black}{blue!60}{\strut Index Page}}}
+        \hyperlink{notes\arabic{cardnumber}}{\textbf{\color{white}\fcolorbox{black}{green!60}{\strut Notes}}}
     \end{center}
     \newpage
 }
@@ -87,7 +82,8 @@
     \end{center}
     % Add "Index" button link at the bottom, pointing to the specific index entry
     \begin{center}
-        \hyperlink{index\arabic{cardnumber}}{\textbf{\color{white}\fcolorbox{black}{blue}{Index Page}}}
+        \hyperlink{index\arabic{cardnumber}}{\textbf{\color{white}\fcolorbox{black}{blue!60}{\strut Index Page}}}
+        \hyperlink{notes\arabic{cardnumber}}{\textbf{\color{white}\fcolorbox{black}{green!60}{\strut Notes}}}
     \end{center}
     \newpage
 }
