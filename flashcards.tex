@@ -38,8 +38,9 @@
     \hline
     \endhead
 
-    % Generate index rows
+    % Generate index rows with dynamic labels
     \forloop{flashcard}{1}{\value{flashcard} < \numflashcards}{%
+        \hypertarget{index\arabic{flashcard}}{} % Label each entry in the index
         \ifodd\value{flashcard}\cellcolor{white}\else\cellcolor{gray!15}\fi
         \hyperlink{front\arabic{flashcard}}{\arabic{flashcard}} \\
         \hline
@@ -61,6 +62,10 @@
                 at (img.south east) {\hyperlink{back\arabic{cardnumber}}{Flip →}};
         \end{tikzpicture}
     \end{center}
+    % Add "Index" button link at the bottom, pointing to the specific index entry
+    \begin{center}
+        \hyperlink{index\arabic{cardnumber}}{\textbf{\color{white}\fcolorbox{black}{blue}{Index Page}}}
+    \end{center}
     \newpage
 }
 
@@ -76,6 +81,10 @@
             \node[fill=red!60, text=white, rounded corners=2mm, inner sep=4pt, font=\bfseries, anchor=south east]
                 at (img.south east) {\hyperlink{front\arabic{cardnumber}}{← Flip}};
         \end{tikzpicture}
+    \end{center}
+    % Add "Index" button link at the bottom, pointing to the specific index entry
+    \begin{center}
+        \hyperlink{index\arabic{cardnumber}}{\textbf{\color{white}\fcolorbox{black}{blue}{Index Page}}}
     \end{center}
     \newpage
 }
