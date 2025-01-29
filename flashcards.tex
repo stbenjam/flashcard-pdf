@@ -27,14 +27,14 @@
 \section*{\centering Flash Card Index}
 
 \noindent
-\begin{longtable}{|p{0.9\textwidth}|}
+\begin{longtable}{|p{0.8\textwidth}|p{0.1\textwidth}|p{0.1\textwidth}|}
     \hline
-    \multicolumn{1}{|c|}{\textbf{}} \\
+    \multicolumn{1}{|c|}{\textbf{Card}} & \multicolumn{1}{c|}{\textbf{Front}} & \multicolumn{1}{c|}{\textbf{Back}} \\
     \hline
     \endfirsthead
 
     \hline
-    \multicolumn{1}{|c|}{\textbf{}} \\
+    \multicolumn{1}{|c|}{\textbf{Card}} & \multicolumn{1}{c|}{\textbf{Front}} & \multicolumn{1}{c|}{\textbf{Back}} \\
     \hline
     \endhead
 
@@ -42,7 +42,9 @@
     \forloop{flashcard}{1}{\value{flashcard} < \numflashcards}{%
         \hypertarget{index\arabic{flashcard}}{} % Label each entry in the index
         \ifodd\value{flashcard}\cellcolor{white}\else\cellcolor{gray!15}\fi
-        \hyperlink{front\arabic{flashcard}}{\arabic{flashcard}} \\
+        \hyperlink{front\arabic{flashcard}}{\arabic{flashcard}} &
+        {\hyperlink{front\arabic{flashcard}}{\textbf{\color{white}\fcolorbox{black}{blue!60}{Front}}}} &
+        {\hyperlink{back\arabic{flashcard}}{\textbf{\color{white}\fcolorbox{black}{red!60}{Back}}}} \\
         \hline
     }
 \end{longtable}
@@ -59,7 +61,7 @@
         \begin{tikzpicture}
             \node[anchor=south west, inner sep=0] (img) at (0,0) {\includegraphics[width=\textwidth]{front.pdf}};
             \node[fill=blue!60, text=white, rounded corners=2mm, inner sep=4pt, font=\bfseries, anchor=south east]
-                at (img.south east) {\hyperlink{back\arabic{cardnumber}}{Flip →}};
+                at (img.south east) {\hyperlink{back\arabic{cardnumber}}{Flip \textrightarrow}};
         \end{tikzpicture}
     \end{center}
     % Add "Index" button link at the bottom, pointing to the specific index entry
@@ -79,7 +81,7 @@
         \begin{tikzpicture}
             \node[anchor=south west, inner sep=0] (img) at (0,0) {\includegraphics[width=\textwidth]{back.pdf}};
             \node[fill=red!60, text=white, rounded corners=2mm, inner sep=4pt, font=\bfseries, anchor=south east]
-                at (img.south east) {\hyperlink{front\arabic{cardnumber}}{← Flip}};
+                at (img.south east) {\hyperlink{front\arabic{cardnumber}}{\textrightarrow Flip}};
         \end{tikzpicture}
     \end{center}
     % Add "Index" button link at the bottom, pointing to the specific index entry
