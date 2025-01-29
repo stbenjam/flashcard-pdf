@@ -1,5 +1,5 @@
 \documentclass[a5paper]{article}
-\usepackage[top=0.75in, bottom=0.5in, left=0.5in, right=0.5in, headheight=14pt]{geometry}
+\usepackage[top=0.75in, bottom=0.5in, left=0.5in, right=0.5in, headheight=16pt]{geometry}
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{tikz}
@@ -15,7 +15,7 @@
 \renewcommand{\headrulewidth}{0pt} % Remove header line
 
 \newcounter{flashcard}
-\newcommand{\numflashcards}{251}
+\newcommand{\numflashcards}{11}
 \newcounter{cardnumber} % Temporary counter for correct numbering
 
 % Increase row height
@@ -67,6 +67,7 @@
     % Add "Index" button link at the bottom, pointing to the specific index entry
     \begin{center}
         \hyperlink{index\arabic{cardnumber}}{\textbf{\color{white}\fcolorbox{black}{blue}{Index Page}}}
+        \hyperlink{notes\arabic{cardnumber}}{\textbf{\color{white}\fcolorbox{black}{blue}{Notes}}}
     \end{center}
     \newpage
 }
@@ -94,7 +95,10 @@
 \forloop{flashcard}{1}{\value{flashcard} < \numflashcards}{%
     \setcounter{cardnumber}{\value{flashcard}}
     \hypertarget{notes\arabic{cardnumber}}{} % Hyperlink target for each notes page
-    \fancyhead[C]{\large \textbf{Notes Page \arabic{cardnumber}}}
+    \fancyhead[C]{\large \textbf{Notes Page \arabic{cardnumber}} \quad
+        \hyperlink{index\arabic{cardnumber}}{\textbf{\color{white}\fcolorbox{black}{blue}{Index}}} \quad
+        \hyperlink{front\arabic{cardnumber}}{\textbf{\color{white}\fcolorbox{black}{blue!60}{Front}}} \quad
+        \hyperlink{back\arabic{cardnumber}}{\textbf{\color{white}\fcolorbox{black}{red!60}{Back}}}}
 
     \begin{center}
     \begin{tikzpicture}[remember picture, overlay]
